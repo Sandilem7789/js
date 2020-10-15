@@ -12,37 +12,18 @@ Horizontal Line Segments
         <canvas width="500" height="500"></canvas>
         <script>
             let cx = document.querySelector("canvas").getContext("2d");
-           
             
-            let width = 500;
-            let height = 500;
-            for(let x = 1; x < width; x += 8){
-                cx.beginPath();
-                cx.moveTo(50, x);
-                cx.lineTo(x + width, x / width + 40* x);
-                if(x >= 100){
-                    cx.fillStyle = "blue";
-                    if(x >= 490){
-                        cx.fillStyle = "green";
+            for(let y = 10; y < 500; y += 10){                                  //for loop for drawing multiple lines
+                line(cx, y);
+            }                     //line drawing loop using function line().
                         
-                        for(let y = 1; y < height; y += 2){
-                            cx.beginPath();
-                            cx.moveTo(y, 10);
-                            cx.lineTo(y + height, y);
-                            if(y >= 510){
-                                cx.fillStyle = "yellow";
-                                if(x >= 100){
-                                    fillStyle = "blue";
-                                }
-                            }
-                        }
-                    }
-                }
-                cx.lineTo(50, 90);
-                if(x )
-                cx.fill();
-                console.log("Where");
-            }
+            function line(ctx, y){                                              //function for drawing a single line                                           
+                ctx.beginPath();                                                //without this spell the liner wouldnt be drawn
+                ctx.moveTo(10, y);                                              //coordinates where the line starts
+                ctx.lineTo(90, y);                                              //cordinates wher the line ends
+                ctx.stroke();                                                   //stroke method: without it the line will not be drawn
+            }                                   //line function.
+              
         </script>
     </body>
 </html>
