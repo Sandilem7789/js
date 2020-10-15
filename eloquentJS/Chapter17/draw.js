@@ -47,9 +47,25 @@ cx3.fill();
 cx3.stroke();
 
 /*Drawing a PieChart*/
-const result = [
+const results = [
     {name: "Satisfied", count: 1043, color: "lightblue"},
     {name: "Neutral", count: 563, color: "lightgreen"},
     {name: "Unsatisfied", count: 510, color: "pink"},
     {name: "No comment", count: 175, color: "silver"}
 ];
+
+let cx4 = bind("#c4");
+let total = results.reduce((sum, {count}) => sum + count, 0);                   //reduce is an array function for adding up all numbers in the array, starting from index 0
+
+//starting at the top
+let currentAngle = -0.5 * Math.PI;
+for(let result of results){
+    let sliceAngle = (result.count / total) * 2 * Math.PI;
+    cx4.beginPath();
+    cx4.arc(200, 200, 200,                                                      //center:(100, 100) redius:(100)
+    currentAngle, currentAngle + sliceAngle);
+    currentAngle += sliceAngle;
+    cx4.lineTo(200, 200);
+    cx4.fillStyle = result.color;
+    cx4.fill();
+}
