@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!--
+svg
+-->
+<html>
+    <head>
+        <title>Canvas</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <p>Normal HTML here</p>
+        <svg xmls="http://www.w3.org/2000/svg">
+            <circle r="50" cx="50" cy="50" fill="red"/>
+            <rect x="120" y="5" width="90" height="90" 
+                  stroke="blue" fill="none"/>
+        </svg>
+        <button onclick="change()">Change</button>
+        <script>
+            let circle = document.querySelector("circle");
+            circle.setAttribute("fill", "cyan");
+            console.log(circle.attributes.fill.value);
+            
+            let color = circle.attributes.fill.value;
+            
+            var change = () => {
+                let r = 10;
+                r =+ 10;
+                circle.attributes.fill.value = `rgb(100, 3, 20)`;
+            };
+        </script>
+    </body>
+</html>
