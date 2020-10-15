@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!--
+Horizontal Line Segments
+-->
+<html>
+    <head>
+        <title>Lines</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <canvas width="500" height="500"></canvas>
+        <script>
+            let cx = document.querySelector("canvas").getContext("2d");
+           
+            
+            let width = 500;
+            let height = 500;
+            for(let x = 1; x < width; x += 8){
+                cx.beginPath();
+                cx.moveTo(50, x);
+                cx.lineTo(x + width, x / width + 40* x);
+                if(x >= 100){
+                    cx.fillStyle = "blue";
+                    if(x >= 490){
+                        cx.fillStyle = "green";
+                        
+                        for(let y = 1; y < height; y += 2){
+                            cx.beginPath();
+                            cx.moveTo(y, 10);
+                            cx.lineTo(y + height, y);
+                            if(y >= 510){
+                                cx.fillStyle = "yellow";
+                                if(x >= 100){
+                                    fillStyle = "blue";
+                                }
+                            }
+                        }
+                    }
+                }
+                cx.lineTo(50, 90);
+                if(x )
+                cx.fill();
+                console.log("Where");
+            }
+        </script>
+    </body>
+</html>
