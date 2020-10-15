@@ -1,0 +1,66 @@
+/*
+Eloquent JavaScript
+*/
+/* 
+    Created on : 06 Sep 2020, 8:32:16 PM
+    Author     : Sandile
+*/
+
+body{
+    text-align: center;                                                         /*Aligning text to center*/
+    font-family: monospace;                                                     /*Font*/
+    color: white;
+    background: #731212;
+}
+
+button{                                                                         /*All buttons will look as defined here*/
+    color: black;
+    background: #811111;
+    font-family: monospace;
+    border-radius: 0px;
+    border-color: transparent;
+    
+}
+
+h1, h2, p{                                                                      /*<h1>, <h2> and <p> elements will look as defined here*/
+    background: #790912
+}
+
+
+.dot{                                                                           /*class dot*/
+    height: 8px; width: 8px;
+    border-radius: 4px;
+    background: violet;
+    position: absolute;
+}
+
+#bar{
+    border-radius: 5px;
+}
+
+dot{                                                                            /*touch screen Dot*/
+    position: absolute;
+    display: block;
+    border: 10px solid red;
+    border-radius: 100px;
+    height: 100px;
+    width: 100px;
+}
+
+/* Progress bar triggered by scroll events *
+ * fixed position acts as absolute position
+ * but it makes sure that the fixed node
+ *doesn't move when the page is scrolled
+ */
+#progress{
+    border-bottom: 4px solid white;
+    border-radius: 4px;
+    width: 0;
+    position: fixed;
+    top: 1px;
+    left: 0;
+}
+
+#emoji{
+    content: "\01F354";
+}

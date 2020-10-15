@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!--
+15.3
+-->
+<html>
+    <head>
+        <title>Exercise 15.3</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <button id="button1">Button 1</button>
+        <button id="button2">Button 2</button>
+        <button id="button3">Button 3</button>
+        
+        <div id="p1" style="display: none">
+            <p>
+                <br><br><br><br><br><br><br>
+                This is content for button 1
+                <br><br><br><br><br><br><br>
+            </p>
+            
+        </div>
+        <p id="p2" style="display: none">This is content for button 2</p>
+        <p id="p3" style="display: none">This is content for button 3</p>
+        
+        <script>
+            let button1 = document.querySelector("#button1");
+            let button2 = document.querySelector("#button2");
+            let button3 = document.querySelector("#button3");
+            
+            let p1 = document.querySelector("#p1");
+            let p2 = document.querySelector("#p2");
+            let p3 = document.querySelector("#p3");
+            
+            
+            asTabs(button1, p1);
+            asTabs(button2, p2);
+            asTabs(button3, p3);
+            
+            
+            function asTabs(button, content){
+                p1.style.dispaly = "none";
+                
+                button.addEventListener("click", event => {
+                    content.style.display = "block";
+                    button.style.background = "#790912";
+                    button.style.color = "white";
+                });
+            }
+        </script>
+    </body>
+</html>

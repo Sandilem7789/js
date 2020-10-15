@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<!--
+Calculate
+-->
+<html>
+    <head>
+        <title>Simple Calculator</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div id="container">
+            <div id="calculator">
+                <!--History-->
+                <div id="history">
+                    <div id="history-value">
+                    </div>
+                </div>
+                <!--Output-->
+                <div id="output">
+                    <div id="output-value">0</div>
+                </div>
+                <!--Keyboard-->
+                <div id="keyboard">
+                    <div id="clearback">
+                        <button class="operator" id="clear">C</button>
+                        <button class="operator" id="backspace">&LeftArrow;</button>
+                    </div>
+                    <div id="numbers">
+                        <button class="number" id="7">7</button>
+                        <button class="number" id="8">8</button>
+                        <button class="number" id="9">9</button>
+                        <button class="number" id="4">4</button>
+                        <button class="number" id="5">5</button>
+                        <button class="number" id="6">6</button>
+                        <button class="number" id="1">1</button>
+                        <button class="number" id="2">2</button>
+                        <button class="number" id="3">3</button>
+                        <button class="number" id="0">0</button>
+                    </div>
+                    
+                    <div id="types">
+                        <button class="type" id="sci">Sci</button>
+                        <button class="type" id="simple">Simple</button>
+                    </div>
+                    
+                    <div id="operators">
+                        <button class="operator" id="/">&#247;</button>
+                        <button class="operator" id="*">&times;</button>
+                        <button class="operator" id="-">-</button>
+                        <button class="operator" id="+">+</button>
+                        
+                        <div id="expand">
+                            <button class="operator" id="sqrt">
+                                &Sqrt;
+                            </button>
+                            <button class="operator" id="pi">&pi;</button>
+                            <button class="operator" id="ln">ln</button>
+                            <button class="operator" id="log">log</button>
+                            <button class="operator" id="sin">sin</button>
+                            <button class="operator" id="cos">cos</button>
+                            <button class="operator" id="tan">tan</button>
+                            <button class="operator" id="factorial">n!</button>
+                            <button class="operator" id="sinh">sinh</button>
+                            <button class="operator" id="cosh">cosh</button>
+                            <button class="operator" id="Exp">Exp</button>
+                            <button class="operator" id="e">e</button>
+                            <button class="operator" id="empty"></button>
+                            <button class="operator" id="square">x^2</button>
+                            <button class="operator" id="cube">x^3</button>
+                            <button class="operator" id="%">%</button>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    <div id="equals">
+                        <button class="operator" id="=">=</button>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+        </div>
+        <script src="calculate.js"></script>
+        </body>
+</html>

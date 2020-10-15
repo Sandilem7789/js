@@ -1,0 +1,49 @@
+/*
+D15STYLE
+*/
+/* 
+    Created on : 28 Sep 2020, 1:59:21 PM
+    Author     : Sandile
+*/
+body{
+    margin: 0px;                                                                /*Putting the timer in the middle*/
+    padding: 50px;                                                             /*Further moving inland*/
+    background: repeating-linear-gradient(white, grey, black) fixed;            /*background color*/        
+}
+
+table{
+    background: white;
+    padding: 2px 2px;
+    border: 3px solid black;
+    text-align: center;
+    padding-bottom: 0px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 50px #388293;
+}
+
+input{
+    height: 180px;
+    width: 450px;
+    font-size: 65px;
+    font-weight: bold;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 1px 15px;
+    background: black;
+    margin-bottom: 5px;
+    font-family: monospace;
+    color: white;
+}
+
+button{
+    padding: 0px 0px;
+    width: 115px;
+    height: 1px;
+    font-size: 25px;
+    font-family: monospace;
+    background: white;
+    border-radius: 4px;
+    outline: none;
+    color: black;
+    border: none;
+}

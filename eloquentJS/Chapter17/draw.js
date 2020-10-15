@@ -7,7 +7,7 @@ bind = (id) =>{
 
 let canvases = document.querySelector("#canvases");
 canvases.style.width = "510px";
-canvases.style.background = "lightgrey";
+canvases.style.background = "darkgrey";
 
 /*Drawing on Canvas C1: Quadratic Curve*/
 let cx1 = bind("#c1");
@@ -59,13 +59,25 @@ let total = results.reduce((sum, {count}) => sum + count, 0);                   
 
 //starting at the top
 let currentAngle = -0.5 * Math.PI;
+let n = 90;
 for(let result of results){
+    n += 30;
     let sliceAngle = (result.count / total) * 2 * Math.PI;
     cx4.beginPath();
-    cx4.arc(200, 200, 200,                                                      //center:(100, 100) redius:(100)
+    cx4.arc(150, 150, 150,                                                      //center:(100, 100) redius:(100)
     currentAngle, currentAngle + sliceAngle);
     currentAngle += sliceAngle;
-    cx4.lineTo(200, 200);
+    cx4.lineTo(150, 150);
     cx4.fillStyle = result.color;
     cx4.fill();
+    cx4.font = "30px Georgia";
+    cx4.fillStyle = "fucshia";
+    cx4.fillText(`${result.name}: ${result.count}`, result.count / total, 250 + n + currentAngle);
 }
+
+
+/*Text*/
+let cx5 = bind("#c5");
+cx5.font = "80px  Georgia ";
+cx5.fillStyle = "fucschia";
+cx5.fillText("GAME OVER", 10, 60);
