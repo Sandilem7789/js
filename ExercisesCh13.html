@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Exercizes</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body{
+                text-align: center;
+                align-content: center;
+                font-family: arial;
+                font-size: 140%
+            }
+        </style>
+    </head>
+    <body>
+        <h1>13.1 Build A Table: thru JS, from the solutions</h1>
+        <div id="mountains"></div>
+        <script>
+            /* We are creating a dynamic site
+             * first we need to create a holder of data
+             * since we are at a basic level servers are 
+             * out of our scope for now, but we know arrays 
+             * and objects so lets create an array of objects.
+             */
+            
+            const MOUNTAINS = [
+                {name: "Kilimanjaro", height: 5895, place: "Tanzania"},
+                {name: "Everest", height: 8848, place: "Nepal"}
+            ];
+            
+            console.log(Object.keys(MOUNTAINS[0]));
+            
+            // Now a function to build a table from the dataset
+            function buildTable(data){
+                let table = document.createElement("table");
+                table.style.border = "solid aqua 1px";
+                
+                let fields = Object.keys(data[0]);                              //keys are {key1: "Home", key2: "Town"}, get it? yeah.
+                let headRow = document.createElement("tr");                     //creating table row
+                fields.forEach(function(field){                                 //an array method, since fields is now an array and is iterable thru forEach
+                    let headCell = document.createElement("th");                //create a table header
+                    headCell.appendChild(document.createTextNode(field));       //and put a field from fields in it in each cell
+                    headCell.style.border = "solid grey"; 
+                    headCell.style.background = "green";
+                    headRow.appendChild(headCell);                              //put the headcell in the row
+                });
+                table.appendChild(headRow);                                     //put the head row int the table
+                
+                data.forEach(function(object){
+                    let row = document.createElement("tr");                     //creating an table row
+                    fields.forEach(function(field){
+                        console.log(object[field]);
+                        let cell = document.createElement("td");
+                        cell.appendChild(document
+                                .createTextNode(object[field]));                //object[field] means Kilimanjaro 5895 Tanzania
+                        cell.style.border = "solid aqua";
+                        if(typeof object[field] == "number"){
+                            cell.style.textAlign = "right";
+                        }
+                        row.appendChild(cell);
+                    });
+                    table.appendChild(row);
+                    
+                });
+                return table;
+            }
+            
+            //document.querySelector("#mountains")
+                  //  .appendChild(buildTable(MOUNTAINS));
+            console.log(document.querySelector("#mountains")
+                    .appendChild(buildTable(MOUNTAINS)));
+        </script>
+        <div>
+            <p>
+                <strong>
+                    child
+                </strong>
+            </p>
+        </div>
+        <script>
+            function byTagName(node, tagName){
+                let found = [];
+                tagName = tagName.toUpperCase();
+                
+                function explore(node){
+                    for(let i = 0; i < node.childNodes.length; i++){
+                        let child = node.childNodes[i];
+                        if(child.nodeType == document.ELEMENT_NODE){
+                            if(child.nodeName = tagName) found.push(child);
+                            explore(child);
+                        }
+                    }
+                }
+                explore(node);
+                return found;
+            }
+            let strong = document.querySelector("p");
+            console.log(byTagName(strong, "strong"));
+        </script>
+        <p style="text-align: center">
+            <br><br><br>
+            <img src="img/cat.png" style="position: absolute" id="cat1">
+            <img src="img/cat.png" style="position: relative" id="cat2">
+        </p>
+        <script>
+            let cat = document.querySelector("#cat1");                          //using querySelector instead of getElementsByTagName
+            let cat2 = document.querySelector("#cat2");
+            let angle = Math.PI / 2;                                            //angle to use at the cosines
+            function animate(time, lastTime){
+                if(lastTime != null){
+                    angle += (time - lastTime) * 0.001;
+                }
+                cat.style.top = 400-(Math.sin(angle) * 70) + "px";
+                cat.style.left = 500+ (Math.cos(angle) * 250) + "px";
+                
+                cat2.style.bottom = (Math.sin(angle)* -89 + "px");
+                cat2.style.right = (Math.cos(angle)* 250 + "px");
+                requestAnimationFrame(newTime => animate(newTime, time));
+            }
+            requestAnimationFrame(animate);
+        </script>
+        
+    </body>
+</html>

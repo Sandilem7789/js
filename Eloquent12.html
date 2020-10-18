@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>My Home Page</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style media = "screen">
+            body{
+                text-align: center;
+                font-size: 120%;
+                font-family: Helvetica;
+                background-origin: padding-box;
+            }
+        </style>
+    </head>
+    <body>
+        <!--Start of the comment
+        
+        <h1>My Home Page</h1>
+        <p>Hello, I am Marijn and this is my home page</p>
+        <p>I also wrote this book. Read it
+            <a href="http://eloquentjavascript.net">here</a></p>
+        <script src = "cadu.js"></script>
+        
+        --Finding Elements--
+        <p>
+            My ostrich Gertrude.
+        </p>
+        <p>
+            <img id = "gertrude" src = "igm/ostrich.png" alt = "GetRude">
+        </p>
+        <script>
+            let ostrich = document.getElementById("gertrude");
+            console.log(ostrich.src);
+        </script>
+        
+        end of the comment--
+        
+        !--Changing the DOM: switching paragraphs--
+        !--
+        <p>one</p>
+        <p>two</p>
+        <p>three</p>
+        <script>
+            let paragraphs = document.body.getElementsByTagName("p");
+            document.body.insertBefore(paragraphs[2], paragraphs[0]);
+            document.body.insertBefore(paragraphs[2], paragraphs[1])
+        </script>
+        --
+        
+        <!--Creating Nodes--
+        !--
+        <p>
+            The <img scr="img/catt.png" alt="Catt"> in the 
+            <img src="img/hat.png" alt="Hat">
+        </p>
+        <p>
+            <button onclick="replaceImages()">Replace</button>
+            <button onclick="checkCon()">Check Console</button>
+        </p>
+        <script>
+            function replaceImages(){
+                let images = document.body.getElementsByTagName("img");
+                let imgArr = Array.from(images);
+                console.log(imgArr);
+                for(let i = images.length - 1; i >= 0; i--){
+                    let image = images[i];
+                    if(image.alt){
+                        let text = document.createTextNode(image.alt);
+                        image.parentNode.replaceChild(text, image);
+                    }
+                }
+            }
+            function checkCon(){
+                console.log("This is how you write on console with buttons");
+            }
+        </script>
+        
+        -->
+        !--
+        <blockquote id="quote">
+            No book can ever be finished. While working on it we learn
+            just enough to find it immature the moment we turn away from it.
+        </blockquote>
+        <script>
+            function elt(type,...children){                                     //takes type and a child(an number)
+                let node = document.createElement(type);                        //create an element of the specified type
+                for(let child of children){
+                    if(typeof child != "string") node.appendChild(child);
+                    else node.appendChild(document.createTextNode(child));
+                }
+                return node;
+            }
+            
+            document.getElementById("quote").appendChild(
+                elt("footer", "-",                                              //"footer" = type, "-" child, elt(....= child too
+                    elt("strong", "Karl Popper"),                               //"strong" = type, "Karl Popper" = child
+                    ", preface to the edition of ",                             // another child
+                        elt("em", "The Open Society and Its Enemies"),          //"em" = tpye, "The Society..." = child
+                        ", 1950"));                                             //another child
+        </script>
+        !--
+        !--Attributes: setting your own  attributes--
+        <p data-classified="secret">The Launch code is 000000.</p>
+        <p data-classified="unclassified">I have two feet.</p>
+        <script>
+            let paras = document.body.getElementsByTagName("p");                //getElementById & getElementsByTagName: mind the s
+            for(let para of Array.from(paras)){
+                if(para.getAttribute("data-classified") === "secret"){
+                    para.remove();
+                }
+            }
+        </script>
+        
+        !--Layout--
+        <p id="boxed" style="border: 18px solid aqua" contenteditable="true">   //creating a border around a paragraph
+            I am boxed in
+        </p>
+        <script>
+            let para = document.getElementById("boxed");                        //declaring paragraph with the id box as a variable
+            console.log("clientHeight: ", para.clientHeight);                   //-> 18: getting the height of the paragraph
+            console.log("offsetHeight: ",para.offsetHeight);                    //-> 54: getting the offset height, that is height with added border
+            let precise = document.getElementById("boxed").
+                    getBoundingClientRect();                                    //here we are getting everything related to the entire DOM: x, y, width, height, and so on
+            console.log(precise);                                               //-> DOMRect {x: 8, y: 174, width: 359, height: 54, top: 174, …}
+        </script>
+        --
+        
+        !--Speed--
+        <p><span id="one"></span></p>
+        <p><span id="two"></span></p>
+        <script>
+            function time(name, action){
+                let start = Date.now();
+                action();
+                console.log(name, "took", Date.now() - start, "ms");
+            }
+            
+            time("naive", () => {
+                let target = document.getElementById("one");
+                while(target.offsetWidth < 200){
+                    target.appendChild(document.createTextNode("X"));
+                }
+            });
+            
+            time("clever", () => {
+                let target = document.getElementById("two");
+                target.appendChild(document.createTextNode("XXXXX"));
+                let total = Math.ceil(2000 / (target.offsetWidth/5));
+                target.firstChild.nodeValue = "X".repeat(total);
+            });
+        </script>
+        
+        !--Basic Styling--
+        <p>
+            <a href=".">Normal Link</a><br><br>
+            <a href="." style="color: green;">Green Link</a>
+        </p>
+        <p>
+            <a href="." style="color: darkgreen">
+                Dark Green Link on a new &ltp&gt
+            </a>
+            <br><br><br><br><br><br><br><br><br>
+            <br><br><br><br><br><br><br><br><br>
+        </p>
+        <p>
+            This text is displayed <strong>inline</strong>,
+            <strong style="display: block">as a block</strong>, and
+            <strong style="display: none">not at all</strong>
+        </p>
+        
+        !--Changing style thru JS--
+        <p id="para" style="color: purple">
+            Nice text
+        </p>
+        <script>
+            let parad = document.getElementById("para");
+            console.log(para.style.color);
+            parad.style.color = "magenta";
+            console.log(parad.style.color);
+        </script>
+        --
+        
+        !--Basic CSS--
+        <style>
+            strong{
+                font-style: italic;
+                color: gray;
+            }
+            p{
+                border: 20px solid aquamarine;
+                border-top-color: #4d0909;
+                border-bottom-color: #4d0909;
+                border-left-color: #731212;
+                border-right-color: #731212;
+                background-color: whitesmoke;
+            }
+        </style>
+        <p>Now <strong>strong text</strong> is italic and gray</p>
+        -->
+        
+        !--Query  Selectors--
+        <style>
+            .animal{
+                background: #977777;
+            }
+            .character{
+                background-color: #e2d0d0;
+            }
+        </style>
+        
+        <h1>Query Selectors</h1>
+        <p>And if you go chasing
+            <span class="animal">rabbits</span></p>
+        <p>and you know you are going to fall</p>
+        <p>Tell 'em <span class="character">a hookah smoking 
+                <span class="animal">caterpillar</span>
+                    
+            </span>
+        </p>
+        <p>has given you the call</p>
+        <script>
+            function count(selector){
+                return document.querySelectorAll(selector).length;
+            }
+            console.log(`Paragraphs: ${count("p")}`);                           //-> 4: counting paragraphs
+            console.log(`Class animal: ${count(".animal")}`);                   //-> 2: class animal
+            console.log(`animal within <p>: ${count("p .animal")}`);            //-> 2: class animal within paragraph
+            console.log(`Direct child of <p>: ${count("p > .animal")}`);        //-> 1: direct child of paragraph
+            //the array returned by querySelectorAll is not live but u still 
+            //need to to use Array.from to make it a proper array.
+        </script>
+        --
+        
+        !--Positioning and Animating--
+        <p style="text-align: center">
+            <br><br><br>
+            <img src="img/cat.png" style="position: relative">
+        </p>
+        <script>
+            let cat = document.querySelector("img");                            //using querySelector instead of getElementsByTagName
+            let angle = Math.PI / 2;                                            //angle to use at the cosines
+            function animate(time, lastTime){
+                if(lastTime != null){
+                    angle += (time - lastTime) * 0.001;
+                }
+                cat.style.top = (Math.sin(angle) * 20) + "px";
+                cat.style.left = (Math.cos(angle) * 200) + "px";
+                requestAnimationFrame(newTime => animate(newTime, time));
+            }
+            requestAnimationFrame(animate);
+        </script>
+    </body>
+</html>

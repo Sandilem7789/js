@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<!--
+Back on ELoquent
+-->
+<html>
+    <head>
+        <title>Eloquent</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="cadu.js"></script>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <h1>Eloquent JavaScript</h1>
+        <p>
+            <img src="img/cat.png" alt="cat" style="position: relative">
+        </p>
+        <div id="mountains"></div>
+        <script>
+            "use strict";
+            let cat = document.querySelector("img");
+            let angle = Math.PI / 2;
+            function animate(time, lastTime){
+                if(lastTime != null){
+                    angle += (time - lastTime) * 0.001;
+                }
+                cat.style.top = (Math.sin(angle) * 20) + "px";
+                cat.style.left = (Math.cos(angle) * 200) + "px";
+                requestAnimationFrame(newTime => animate(newTime, time));
+            }
+            requestAnimationFrame(animate);
+            
+            /*We will build table from this array*/
+            const MOUNTAINS = [                                                 //an array with objects to be included in the table
+                {name: "Kilimanjaro", height: 5895, place: "Tanzania"},
+                {name: "Everest", height: 8848, place: "Nepal"},
+                {name: "Mount Fuji", height: 3776, place: "Japan"},
+                {name: "Vaalserberg", height: 323, place: "Netherlands"},
+                {name: "Denali", height: 5465, place: "United States"},
+                {name: "Popocatepetl", height: 4808, place:"Italy/France"}
+            ];
+            
+            /*Function to build the table with*/
+            function buildTable(data){                                          //function that programaticaly creates a table.
+                let table = document.createElement("table");                    //creating the element:: <table>
+                
+                let fields = Object.keys(data[0]);                              //accessing the array for table headers
+                let headRow = document.createElement("tr");                     //creating the first row:: <tr>
+                fields.forEach(function(field){                                 //using the forEach loop to..
+                    let headCell = document.createElement("th");                // create table header:: <th>
+                    headCell.style.border = "solid black";                      //set border..
+                    headCell.style.backgroundColor = "aqua";                    //setting the background color
+                    headCell.appendChild(document.createTextNode(field));       //writing the information on the header cell.
+                    headRow.appendChild(headCell);                              //equivalent to the closing tag:: </th>
+                });
+                table.appendChild(headRow);                                     //closing the head row:: <tr>
+                
+                data.forEach(function(object){                                  //for each object in data..
+                    let row = document.createElement("tr");                     //create a row:: <tr>
+                    fields.forEach(function(field){                             //then for each field
+                        let cell = document.createElement("td");                //create a cell:: <td>
+                        cell.style.border = "solid black";                      //set a solid black border
+                        cell.appendChild(
+                            document.createTextNode(object[field]));            //write on the table with the field of the object
+                        if(typeof object[field] == "number"){                   //if its a number
+                            cell.style.textAlign = "right";                     //align text to the right
+                        }
+                        row.appendChild(cell);                                  //then close cell:: </td>
+                    });
+                    table.appendChild(row);                                     //then close row
+                });
+                
+                return table;                                                   //return the resulting table
+            }
+            
+            document.querySelector("#mountains")                                //select an element with id="mountains"
+                    .appendChild(buildTable(MOUNTAINS));                        //then build a table in it, with array MOUNTAINS
+        </script>
+    </body>
+</html>
